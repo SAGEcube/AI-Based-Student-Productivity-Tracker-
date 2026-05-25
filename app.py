@@ -112,7 +112,7 @@ Provide exactly 4 personalized suggestions in this JSON format (respond ONLY wit
   ]
 }}"""
 
-        response = model.generate_content(prompt)
+       response = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
         text = response.text.strip().lstrip("```json").lstrip("```").rstrip("```").strip()
         return json.loads(text)
     except Exception as e:
@@ -337,7 +337,7 @@ if st.session_state.page == "Dashboard":
         st.markdown('<div class="section-header">⏱️ Weekly Focus Minutes</div>', unsafe_allow_html=True)
         fig2 = px.area(week_df, x="day", y="focus_minutes",
                        color_discrete_sequence=["#c084fc"])
-        fig2.update_traces(fill="tozeroy", fillcolor="#c084fc22", line_width=2)
+       fig2.update_traces(fill="tozeroy", fillcolor="rgba(192,132,252,0.133)", line_width=2)
         fig2.update_layout(
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
